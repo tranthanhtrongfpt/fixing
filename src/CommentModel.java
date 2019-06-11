@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * @author HAT team 
- * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class CommentModel {
 
@@ -22,8 +21,9 @@ public class CommentModel {
     private ArrayList<Comment> coms;
 
     /**
-     * 
-     * @throws SQLException 
+     * Constructor for initial the things
+     *
+     * @throws SQLException
      */
     public CommentModel() throws SQLException {
 
@@ -43,7 +43,8 @@ public class CommentModel {
 
     /**
      * Load function for loading the stuff
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public void load() throws SQLException {
         try {
@@ -68,6 +69,7 @@ public class CommentModel {
     }
 
     /**
+     * Add the comment
      *
      * @param artID
      * @param content
@@ -97,6 +99,7 @@ public class CommentModel {
     }
 
     /**
+     * Update the comment
      *
      * @param id
      * @param artID
@@ -104,7 +107,7 @@ public class CommentModel {
      * @param email
      * @param dateComment
      * @param status
-     * @return 
+     * @return
      */
     public boolean update(int id, int artID, String content, String email, Date dateComment, boolean status) {
         try {
@@ -128,12 +131,46 @@ public class CommentModel {
     }
 
     /**
+     * update rows per page
      *
      * @param rows
-     * @return 
+     * @return
      */
     public int updateRowsPerPage(int rows) {
         return rows;
+    }
+
+    /**
+     * get commentBy ID
+     * @param id
+     * @return 
+     */
+    public Comment getCommentByID(int id) {
+        for (int i = 0; i < coms.size(); i++) {
+            if (coms.get(i).getID() == id) {
+                return coms.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * get comment by article ID
+     * @param artID
+     * @return 
+     */
+    public ArrayList<Comment> getCommentsByArticleID(int artID) {
+        ArrayList<Comment> list = new ArrayList<>();
+        for (int i = 0; i < coms.size(); i++) {
+            if (coms.get(i).getArt_ID() == artID) {
+                list.add(coms.get(i));
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
     }
 
 }

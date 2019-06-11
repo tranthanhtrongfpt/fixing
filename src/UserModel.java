@@ -70,6 +70,21 @@ public class UserModel {
         }
     }
 
+    /**
+     * Function for add the user
+     * @param username
+     * @param password
+     * @param name
+     * @param email
+     * @param gender
+     * @param birthday
+     * @param phone
+     * @param role_id
+     * @param status
+     * @return
+     * @throws SQLException
+     * @throws Exception 
+     */
     public boolean addUser(
             String username, String password, String name,
             String email, String gender, String birthday,
@@ -99,7 +114,23 @@ public class UserModel {
         }
     }
 
-    public boolean updateWord(
+    /**
+     * Function for updateUser
+     * @param id
+     * @param username
+     * @param password
+     * @param name
+     * @param email
+     * @param gender
+     * @param birthday
+     * @param phone
+     * @param role_id
+     * @param status
+     * @return
+     * @throws SQLException
+     * @throws Exception 
+     */
+    public boolean updateUser(
             int id, String username, String password, String name,
             String email, String gender, String birthday,
             String phone, int role_id, boolean status
@@ -136,7 +167,12 @@ public class UserModel {
         }
     }
 
-    public int Search(int id) {
+    /**
+     * Function for search by ID
+     * @param id
+     * @return 
+     */
+    public int SearchByID(int id) {
         for (int i = 0; i < users.size(); i++) {
             User w = users.get(i);
             if (w.getID() == id) {
@@ -146,8 +182,13 @@ public class UserModel {
         return -1;
     }
 
+    /**
+     * function for get user by ID
+     * @param id
+     * @return 
+     */
     public User getUser(int id) {
-        int idx = Search(id);
+        int idx = SearchByID(id);
         if (idx != -1) {
             return this.users.get(idx);
         } else {
@@ -155,10 +196,18 @@ public class UserModel {
         }
     }
 
+    /**
+     * function for get size
+     * @return 
+     */
     public int getSize() {
         return users.size();
     }
 
+    /**
+     * get to String function
+     * @return 
+     */
     @Override
     public String toString() {
         String str = "";

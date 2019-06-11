@@ -20,6 +20,10 @@ public class RoleModel {
     private String sqlStr;
     private ArrayList<Role> roles;
 
+    /**
+     * Constructor for initial the things
+     * @throws SQLException 
+     */
     public RoleModel() throws SQLException {
         try {
             conn = DataConnection.getConnection();
@@ -56,7 +60,12 @@ public class RoleModel {
         }
     }
 
-    public int search(int id) {
+    /**
+     * search by ID
+     * @param id
+     * @return 
+     */
+    public int searchByID(int id) {
         for (int i = 0; i < roles.size(); i++) {
             Role w = roles.get(i);
             if (w.getID() == id) {
@@ -65,9 +74,27 @@ public class RoleModel {
         }
         return -1;
     }
+    /**
+     * search By name
+     * @param name
+     * @return 
+     */
+    public Role searchByName(String name){
+        for(int i=0;i<roles.size();i++){
+            if(roles.get(i).getRole_Title().equalsIgnoreCase(name)){
+                return roles.get(i);
+            }
+        }
+        return null;
+    }
 
+    /**
+     * get role
+     * @param id
+     * @return 
+     */
     public Role getRole(int id) {
-        int idx = search(id);
+        int idx = searchByID(id);
         if (idx != -1) {
             return this.roles.get(idx);
         } else {
@@ -75,6 +102,10 @@ public class RoleModel {
         }
     }
 
+    /**
+     * get size
+     * @return 
+     */
     public int getSize() {
         return roles.size();
     }

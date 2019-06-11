@@ -7,10 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team 
+ * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class CategoryModel {
 
+    //declare some variables
     private String tableName = "Category";
     private Connection conn;
     private Statement st;
@@ -18,7 +20,11 @@ public class CategoryModel {
     private ResultSet rs;
     private String sqlStr;
     private ArrayList<Category> cates;
-
+    
+    /**
+     * Constructor for initial the things
+     * @throws SQLException 
+     */
     public CategoryModel() throws SQLException {
         try {
             conn = DataConnection.getConnection();
