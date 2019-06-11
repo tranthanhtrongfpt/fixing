@@ -7,10 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 
+ * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class UserModel {
 
+    //declare some variables
     private String tableName = "User";
     private Connection conn;
     private Statement st;
@@ -19,6 +21,10 @@ public class UserModel {
     private String sqlStr;
     private ArrayList<User> users;
 
+    /**
+     * Constructor for userModel
+     * @throws SQLException 
+     */
     public UserModel() throws SQLException {
         try {
             conn = DataConnection.getConnection();
@@ -33,7 +39,11 @@ public class UserModel {
             throw e;
         }
     }
-
+    
+    /**
+     * Load function for loading the stuff
+     * @throws SQLException 
+     */
     public void Load() throws SQLException {
         try {
             sqlStr = "SELECT * FROM " + tableName + "";

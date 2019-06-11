@@ -9,7 +9,10 @@ public class ArticleModel {
     public ArticleModel() {
         throw new UnsupportedOperationException();
     }
-
+    /**
+     * Load function for loading the stuff
+     * @throws SQLException 
+     */
     public void load() {
         throw new UnsupportedOperationException();
     }

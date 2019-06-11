@@ -33,7 +33,10 @@ public class CategoryModel {
             throw e;
         }
     }
-
+    /**
+     * Load function for loading the stuff
+     * @throws SQLException 
+     */
     public void load() throws SQLException {
         try {
             sqlStr = "SELECT * FROM " + tableName + ";";
