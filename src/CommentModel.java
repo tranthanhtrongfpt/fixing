@@ -42,7 +42,7 @@ public class CommentModel {
     }
 
     /**
-     * 
+     * Load function for loading the stuff
      * @throws SQLException 
      */
     public void load() throws SQLException {
