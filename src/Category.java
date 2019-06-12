@@ -121,7 +121,7 @@ public class Category {
      * @param id
      * @return 
      */
-    public ArrayList<Article> getArticles(ArrayList<Article> la, int id) {
+    public ArrayList<Article> getArticlesByCateID(ArrayList<Article> la, int id) {
         ArrayList<Article> list = new ArrayList<>();
         for (int i = 0; i < la.size(); i++) {
             if (la.get(i).getCateID() == id) {

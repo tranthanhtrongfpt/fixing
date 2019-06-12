@@ -7,8 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author HAT team 
- * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class CategoryModel {
 
@@ -20,10 +19,11 @@ public class CategoryModel {
     private ResultSet rs;
     private String sqlStr;
     private ArrayList<Category> cates;
-    
+
     /**
      * Constructor for initial the things
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public CategoryModel() throws SQLException {
         try {
@@ -39,9 +39,11 @@ public class CategoryModel {
             throw e;
         }
     }
+
     /**
      * Load function for loading the stuff
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public void load() throws SQLException {
         try {
@@ -64,9 +66,10 @@ public class CategoryModel {
 
     /**
      * Function for add the new category
+     *
      * @param Name
      * @param Status
-     * @return 
+     * @return
      * @throws java.sql.SQLException
      */
     public boolean add(String Name, boolean Status) throws SQLException {
@@ -109,6 +112,27 @@ public class CategoryModel {
             return false;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    /**
+     * get article function
+     *
+     * @param la
+     * @param id
+     * @return
+     */
+    public ArrayList<Article> getArticlesByCateID(ArrayList<Article> la, int id) {
+        ArrayList<Article> list = new ArrayList<>();
+        for (int i = 0; i < la.size(); i++) {
+            if (la.get(i).getCateID() == id) {
+                list.add(la.get(i));
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
         }
     }
 

@@ -5,10 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
- * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team 
+ * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class CommentModel {
 
@@ -140,6 +143,28 @@ public class CommentModel {
         return rows;
     }
 
+     /**
+     * Sort comment by Date
+     * @return 
+     */
+    public ArrayList<Comment> sortByDateComment(){
+        ArrayList<Comment> list = new ArrayList<>();
+        System.arraycopy(coms, 0, list, 0, coms.size());
+        for (int i = 0; i < coms.size(); i++) {
+            for (int j = 0; j < coms.size() - i; j++) {
+                if (coms.get(j).getDate_Comment().after(coms.get(j+1).getDate_Comment())) {
+                    Comment a = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, a);
+                }
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
     /**
      * get commentBy ID
      * @param id
@@ -172,5 +197,28 @@ public class CommentModel {
             return list;
         }
     }
+    /**
+     * Sort comment by ID
+     * @return 
+     */
+    public ArrayList<Comment> sortByID(){
+        ArrayList<Comment> list = new ArrayList<>();
+        System.arraycopy(coms, 0, list, 0, coms.size());
+        for (int i = 0; i < coms.size(); i++) {
+            for (int j = 0; j < coms.size() - i; j++) {
+                if (coms.get(j).getID()>coms.get(j + 1).getID()) {
+                    Comment a = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, a);
+                }
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
+    
 
 }
