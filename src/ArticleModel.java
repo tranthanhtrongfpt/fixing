@@ -7,10 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team 
+ * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class ArticleModel {
 
+    //declare some variables
     private String tableName = "Article";
     private Connection conn;
     private Statement st;
@@ -19,6 +21,10 @@ public class ArticleModel {
     private String sqlStr;
     private ArrayList<Article> articles;
 
+    /**
+     * Article constructor
+     * @throws SQLException 
+     */
     public ArticleModel() throws SQLException {
         try {
             conn = DataConnection.getConnection();
@@ -66,7 +72,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * add function for adding the new article
      * @param content
      * @param mainAuthorID
      * @param editorID
@@ -106,7 +112,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * update article
      * @param id
      * @param content
      * @param mainAuthorID
@@ -153,6 +159,11 @@ public class ArticleModel {
         }
     }
 
+    /**
+     * get articles
+     * @param ID
+     * @return 
+     */
     public Article getArticle(int ID) {
         int idx = searchByID(ID);
         if (idx != -1) {
@@ -163,7 +174,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * remove articles
      * @param id
      */
     public void remove(int ID) {
@@ -174,7 +185,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * search by ID
      * @param id
      */
     public int searchByID(int ID) {
@@ -188,7 +199,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * search by Name
      * @param name
      */
     public void searchByName(String title) {
@@ -203,7 +214,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * Search by Cate
      * @param cateID
      */
     public int searchByCate(int cateID) {
@@ -217,7 +228,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * search by author name
      * @param authorName
      */
     public int searchByAuthorName(int mainAuthorID) {
@@ -231,7 +242,7 @@ public class ArticleModel {
     }
 
     /**
-     *
+     * search by Date public
      * @param datePub
      */
     public void searchByDatePublic(String datePub) {
@@ -239,21 +250,25 @@ public class ArticleModel {
     }
 
     public void sortByDate() {
-        throw new UnsupportedOperationException();
+        
     }
 
     public void get10lastestArticle() {
-        throw new UnsupportedOperationException();
+       
     }
 
     /**
-     *
+     * updater rows per page
      * @param rows
      */
-    public void updateRowsPerPage(int rows) {
-        throw new UnsupportedOperationException();
+    public int updateRowsPerPage(int rows) {
+        return rows;
     }
 
+    /**
+     * toString articles
+     * @return 
+     */
     @Override
     public String toString() {
         String str = "";
