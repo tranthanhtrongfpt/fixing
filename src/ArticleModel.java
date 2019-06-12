@@ -209,15 +209,14 @@ public class ArticleModel {
      *
      * @param name
      */
-    public void searchByName(String title) {
+    public Article searchByName(String title) {
         for (int i = 0; i < articles.size(); i++) {
             Article b = articles.get(i);
             if (b.getTittle() == title) {
-                System.out.println("Tao cười tao ỉ********");
-            } else {
-                System.out.println("No data");
+               return articles.get(i);
             }
         }
+        return null;
     }
 
     /**
