@@ -16,7 +16,19 @@ public class Article {
     private String title;
     private boolean status;
 
-//Constructor
+    /**
+     * Article stuff
+     * @param iD
+     * @param mainAuthorID
+     * @param editorID
+     * @param cateID
+     * @param content
+     * @param datePub
+     * @param destext
+     * @param desPic
+     * @param title
+     * @param status 
+     */
     public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status) {
         this.ID = iD;
         this.mainAuthorID = mainAuthorID;
@@ -30,11 +42,19 @@ public class Article {
         this.cateID = cateID;
     }
 
-//getter and setter
+    /**
+     * get ID
+     * @return 
+     */
     public int getID() {
         return ID;
     }
 
+    /**
+     * set ID
+     * @param aID
+     * @throws ArticleException 
+     */
     public void setID(int aID) throws ArticleException {
         if (aID <= 0) {
             throw new ArticleException("Id must greater tha zero");
@@ -43,10 +63,20 @@ public class Article {
         }
     }
 
+    /**
+     * get content
+     * @return 
+     */
     public String getContent() {
         return content;
     }
+    
 
+    /**
+     * set content
+     * @param content
+     * @throws ArticleException 
+     */
     public void setContent(String content) throws ArticleException {
         if (content.isEmpty()) {
             throw new ArticleException("Content of title cannot empty");
@@ -55,10 +85,19 @@ public class Article {
         }
     }
 
+    /**
+     * get main author ID
+     * @return 
+     */
     public int getMainAuthorID() {
         return mainAuthorID;
     }
 
+    /**
+     * set main author ID
+     * @param mainAuthorID
+     * @throws ArticleException 
+     */
     public void setMainAuthorID(int mainAuthorID) throws ArticleException {
         if (mainAuthorID <= 0) {
             throw new ArticleException("MainAuthorID must greater tha zero");
@@ -67,10 +106,19 @@ public class Article {
         }
     }
 
+    /**
+     * get editor id
+     * @return 
+     */
     public int getEditorID() {
         return editorID;
     }
 
+    /**
+     * set editor ID
+     * @param editorID
+     * @throws ArticleException 
+     */
     public void setEditorID(int editorID) throws ArticleException {
         if (editorID <= 0) {
             throw new ArticleException("EditorID must greater tha zero");
@@ -79,10 +127,19 @@ public class Article {
         }
     }
 
+    /**
+     * get Date publish
+     * @return 
+     */
     public String getDatePub() {
         return datePub;
     }
 
+    /**
+     * set date publish
+     * @param datePub
+     * @throws ArticleException 
+     */
     public void setDatePub(String datePub) throws ArticleException {
         if (datePub.isEmpty()) {
             throw new ArticleException("DatePub cannot empty");
@@ -91,10 +148,19 @@ public class Article {
         }
     }
 
+    /**
+     * get category id
+     * @return 
+     */
     public int getCateID() {
         return cateID;
     }
 
+    /**
+     * set category id
+     * @param cateID
+     * @throws ArticleException 
+     */
     public void setCateID(int cateID) throws ArticleException {
         if (cateID <= 0) {
             throw new ArticleException("CateID must greater tha zero");
@@ -103,10 +169,19 @@ public class Article {
         }
     }
 
+    /**
+     * get description picture
+     * @return 
+     */
     public String getDesPic() {
         return desPic;
     }
 
+    /**
+     * set description picture
+     * @param aDesPic
+     * @throws ArticleException 
+     */
     public void setDesPic(String aDesPic) throws ArticleException {
         if (aDesPic.isEmpty()) {
             throw new ArticleException("DesPic cannot empty");
@@ -115,10 +190,19 @@ public class Article {
         }
     }
 
+    /**
+     * get description text
+     * @return 
+     */
     public String getDestext() {
         return destext;
     }
 
+    /**
+     * set description text
+     * @param destext
+     * @throws ArticleException 
+     */
     public void setDestext(String destext) throws ArticleException {
         if (destext.isEmpty()) {
             throw new ArticleException("Destext cannot empty");
@@ -127,10 +211,19 @@ public class Article {
         }
     }
 
+    /**
+     * get title
+     * @return 
+     */
     public String getTittle() {
         return title;
     }
 
+    /**
+     * set title
+     * @param aTitle
+     * @throws ArticleException 
+     */
     public void setTittle(String aTitle) throws ArticleException {
         if (title.isEmpty()) {
             throw new ArticleException("Tittle cannot empty");
@@ -139,10 +232,19 @@ public class Article {
         }
     }
 
+    /**
+     * get status
+     * @return 
+     */
     public boolean getStatus() {
         return status;
     }
 
+    /**
+     * set status
+     * @param status
+     * @throws ArticleException 
+     */
     public void setStatus(boolean status) throws ArticleException {
         this.status = status;
     }

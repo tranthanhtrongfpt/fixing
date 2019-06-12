@@ -5,6 +5,10 @@
  */
 public class ArticleException extends Exception {
 
+    /**
+     * Article Exception
+     * @param message 
+     */
     public ArticleException(String message) {
         super("Comment Exception: " + message);
     }
