@@ -1,7 +1,8 @@
-
 import java.util.ArrayList;
-
-
+/**
+ * @author HAT team Group 3
+ * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ */
 public class User {
 
     //input data
@@ -59,11 +60,11 @@ public class User {
      * set id
      *
      * @param ID
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setID(int ID) throws RoleException {
+    public void setID(int ID) throws UserException {
         if (ID <= 0) {
-            throw new RoleException("Id must greater tha zero");
+            throw new UserException("Id must greater tha zero");
         } else {
             this.ID = ID;
         }
@@ -82,11 +83,11 @@ public class User {
      * set username
      *
      * @param username
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setUsername(String username) throws RoleException {
+    public void setUsername(String username) throws UserException {
         if (username.isEmpty()) {
-            throw new RoleException("Username title cannot empty");
+            throw new UserException("Username title cannot empty");
         } else {
             this.username = username;
         }
@@ -105,11 +106,11 @@ public class User {
      * set pass word
      *
      * @param password
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setPassword(String password) throws RoleException {
+    public void setPassword(String password) throws UserException {
         if (password.isEmpty()) {
-            throw new RoleException("Password title cannot empty");
+            throw new UserException("Password title cannot empty");
         } else {
             this.password = password;
         }
@@ -128,11 +129,11 @@ public class User {
      * set name
      *
      * @param name
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setName(String name) throws RoleException {
+    public void setName(String name) throws UserException {
         if (name.isEmpty()) {
-            throw new RoleException("Name title cannot empty");
+            throw new UserException("Name title cannot empty");
         } else {
             this.name = name;
         }
@@ -151,11 +152,11 @@ public class User {
      * set email
      *
      * @param email
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setEmail(String email) throws RoleException {
+    public void setEmail(String email) throws UserException {
         if (email.isEmpty()) {
-            throw new RoleException("Email title cannot empty");
+            throw new UserException("Email title cannot empty");
         } else {
             this.email = email;
         }
@@ -174,11 +175,11 @@ public class User {
      * set gender
      *
      * @param gender
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setGender(String gender) throws RoleException {
+    public void setGender(String gender) throws UserException {
         if (gender.isEmpty()) {
-            throw new RoleException("Gender title cannot empty");
+            throw new UserException("Gender title cannot empty");
         } else {
             this.gender = gender;
         }
@@ -197,11 +198,11 @@ public class User {
      * set birth day
      *
      * @param birthday
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setBirthday(String birthday) throws RoleException {
+    public void setBirthday(String birthday) throws UserException {
         if (birthday.isEmpty()) {
-            throw new RoleException("Birthday title cannot empty");
+            throw new UserException("Birthday title cannot empty");
         } else {
             this.birthday = birthday;
         }
@@ -220,11 +221,11 @@ public class User {
      * set phone
      *
      * @param phone
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setPhone(String phone) throws RoleException {
+    public void setPhone(String phone) throws UserException {
         if (phone.isEmpty()) {
-            throw new RoleException("Phone title cannot empty");
+            throw new UserException("Phone title cannot empty");
         } else {
             this.phone = phone;
         }
@@ -243,11 +244,11 @@ public class User {
      * set role id
      *
      * @param role_ID
-     * @throws RoleException
+     * @throws UserException
      */
-    public void setRole_ID(int role_ID) throws RoleException {
+    public void setRole_ID(int role_ID) throws UserException {
         if (role_ID <= 0) {
-            throw new RoleException("Role ID title cannot empty");
+            throw new UserException("Role ID title cannot empty");
         } else {
             this.role_ID = role_ID;
         }

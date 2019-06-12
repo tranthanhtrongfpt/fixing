@@ -5,10 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
- * @author HAT team Group 3 
- * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team 
+ * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class UserModel {
 
@@ -23,7 +25,8 @@ public class UserModel {
 
     /**
      * Constructor for userModel
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public UserModel() throws SQLException {
         try {
@@ -39,10 +42,11 @@ public class UserModel {
             throw e;
         }
     }
-    
+
     /**
      * Load function for loading the stuff
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public void Load() throws SQLException {
         try {
@@ -72,6 +76,7 @@ public class UserModel {
 
     /**
      * Function for add the user
+     *
      * @param username
      * @param password
      * @param name
@@ -83,7 +88,7 @@ public class UserModel {
      * @param status
      * @return
      * @throws SQLException
-     * @throws Exception 
+     * @throws Exception
      */
     public boolean addUser(
             String username, String password, String name,
@@ -116,6 +121,7 @@ public class UserModel {
 
     /**
      * Function for updateUser
+     *
      * @param id
      * @param username
      * @param password
@@ -128,7 +134,7 @@ public class UserModel {
      * @param status
      * @return
      * @throws SQLException
-     * @throws Exception 
+     * @throws Exception
      */
     public boolean updateUser(
             int id, String username, String password, String name,
@@ -139,15 +145,14 @@ public class UserModel {
             sqlStr = "UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?,?,?,?,?);";
             pst = conn.prepareStatement(sqlStr);
             pst.setInt(1, id);
-            pst.setInt(2, id);
-            pst.setString(3, username);
-            pst.setString(4, password);
-            pst.setString(5, name);
-            pst.setString(6, email);
-            pst.setString(7, gender);
-            pst.setString(8, birthday);
-            pst.setString(9, phone);
-            pst.setInt(10, role_id);
+            pst.setString(2, username);
+            pst.setString(3, password);
+            pst.setString(4, name);
+            pst.setString(5, email);
+            pst.setString(6, gender);
+            pst.setString(7, birthday);
+            pst.setString(8, phone);
+            pst.setInt(9, role_id);
             pst.setBoolean(10, status);
             pst.executeUpdate();
             getUser(id).setUsername(username);
@@ -162,15 +167,16 @@ public class UserModel {
             return true;
         } catch (SQLException e) {
             return false;
-        } catch (RoleException e) {
+        } catch (Exception e) {
             return false;
         }
     }
 
     /**
      * Function for search by ID
+     *
      * @param id
-     * @return 
+     * @return
      */
     public int SearchByID(int id) {
         for (int i = 0; i < users.size(); i++) {
@@ -183,9 +189,75 @@ public class UserModel {
     }
 
     /**
+     * Function for search by Name
+     *
+     * @param name
+     * @return
+     */
+    public ArrayList SearchByName(String name) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (User u : users) {
+            if (u.getName().toLowerCase().contains(name.trim().toLowerCase())) {
+                arr.add(u);
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * Function for search by Phone
+     *
+     * @param phone
+     * @return
+     */
+    public ArrayList SearchByPhone(String phone) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (User u : users) {
+            if (u.getPhone().toLowerCase().contains(phone.trim().toLowerCase())) {
+                arr.add(u);
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * Function for search by Email
+     *
+     * @param email
+     * @return
+     */
+    public ArrayList SearchByEmail(String email) {
+        ArrayList<User> arr = new ArrayList<>();
+        for (User u : users) {
+            if (u.getEmail().toLowerCase().contains(email.trim().toLowerCase())) {
+                arr.add(u);
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * sort array by name of user
+     *
+     * @return
+     */
+    public ArrayList SortByName() {
+        ArrayList<User> u = new ArrayList<>();
+        System.arraycopy(users, 0, u, 0, users.size());
+        Collections.sort(u, new Comparator<User>() {
+            @Override
+            public int compare(User s1, User s2) {
+                return s1.getUsername().compareTo(s2.getUsername());
+            }
+        });
+        return u;
+    }
+
+    /**
      * function for get user by ID
+     *
      * @param id
-     * @return 
+     * @return
      */
     public User getUser(int id) {
         int idx = SearchByID(id);
@@ -198,7 +270,8 @@ public class UserModel {
 
     /**
      * function for get size
-     * @return 
+     *
+     * @return
      */
     public int getSize() {
         return users.size();
@@ -206,7 +279,8 @@ public class UserModel {
 
     /**
      * get to String function
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
