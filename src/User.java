@@ -1,4 +1,7 @@
 
+import java.util.ArrayList;
+
+
 public class User {
 
     //input data
@@ -268,4 +271,44 @@ public class User {
         this.status = status;
     }
 
+    
+    /**
+     * disable
+     * @param id 
+     */
+    public void disable(int id) {
+        if (this.ID == id) {
+            this.status = false;
+        }
+    }
+
+    /**
+     * active function
+     * @param id 
+     */
+    public void active(int id) {
+        if (this.ID == id) {
+            this.status = true;
+        }
+    }
+
+    /**
+     * get article function
+     * @param la
+     * @param id
+     * @return 
+     */
+    public ArrayList<Article> getArticles(ArrayList<Article> la) {
+        ArrayList<Article> list = new ArrayList<>();
+        for (int i = 0; i < la.size(); i++) {
+            if (la.get(i).getMainAuthorID() == this.ID) {
+                list.add(la.get(i));
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
 }
