@@ -1,4 +1,7 @@
 
+import java.util.Date;
+
+
 /**
  * @author HAT team Group 3
  * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
@@ -9,7 +12,7 @@ public class Article {
     private String content;
     private int mainAuthorID;
     private int editorID;
-    private String datePub;
+    private Date datePub;
     private int cateID;
     private String desPic;
     private String destext;
@@ -29,7 +32,7 @@ public class Article {
      * @param title
      * @param status 
      */
-    public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status) {
+    public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status) {
         this.ID = iD;
         this.mainAuthorID = mainAuthorID;
         this.content = content;
@@ -131,7 +134,7 @@ public class Article {
      * get Date publish
      * @return 
      */
-    public String getDatePub() {
+    public Date getDatePub() {
         return datePub;
     }
 
@@ -140,8 +143,8 @@ public class Article {
      * @param datePub
      * @throws ArticleException 
      */
-    public void setDatePub(String datePub) throws ArticleException {
-        if (datePub.isEmpty()) {
+    public void setDatePub(Date datePub) throws ArticleException {
+        if (datePub.equals(null)) {
             throw new ArticleException("DatePub cannot empty");
         } else {
             this.datePub = datePub;

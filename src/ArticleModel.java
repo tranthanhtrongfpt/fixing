@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * @author HAT team 
- * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class ArticleModel {
 
@@ -23,7 +23,8 @@ public class ArticleModel {
 
     /**
      * Article constructor
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public ArticleModel() throws SQLException {
         try {
@@ -54,7 +55,7 @@ public class ArticleModel {
                     int Id = rs.getInt("ID");
                     String username = rs.getString("Username");
                     String password = rs.getString("Password");
-                    String name = rs.getString("Name");
+                    Date name = rs.getDate("Name");
                     String email = rs.getString("Email");
                     String gender = rs.getString("Gender");
                     String birthday = rs.getString("Birthday");
@@ -73,6 +74,7 @@ public class ArticleModel {
 
     /**
      * add function for adding the new article
+     *
      * @param content
      * @param mainAuthorID
      * @param editorID
@@ -83,7 +85,7 @@ public class ArticleModel {
      * @param Title
      * @param status
      */
-    public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status)
+    public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
             sqlStr = "";
@@ -94,7 +96,7 @@ public class ArticleModel {
             pst.setInt(3, editorID);
             pst.setInt(4, cateID);
             pst.setString(5, content);
-            pst.setString(6, datePub);
+            pst.setDate(6, (java.sql.Date) datePub);
             pst.setString(7, destext);
             pst.setString(8, desPic);
             pst.setString(9, title);
@@ -113,6 +115,7 @@ public class ArticleModel {
 
     /**
      * update article
+     *
      * @param id
      * @param content
      * @param mainAuthorID
@@ -124,7 +127,7 @@ public class ArticleModel {
      * @param Title
      * @param Status
      */
-    public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status)
+    public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
             sqlStr = "";
@@ -135,7 +138,7 @@ public class ArticleModel {
             pst.setInt(3, editorID);
             pst.setInt(4, cateID);
             pst.setString(5, content);
-            pst.setString(6, datePub);
+            pst.setDate(6, (java.sql.Date) datePub);
             pst.setString(7, destext);
             pst.setString(8, desPic);
             pst.setString(9, title);
@@ -161,8 +164,9 @@ public class ArticleModel {
 
     /**
      * get articles
+     *
      * @param ID
-     * @return 
+     * @return
      */
     public Article getArticle(int ID) {
         int idx = searchByID(ID);
@@ -175,6 +179,7 @@ public class ArticleModel {
 
     /**
      * remove articles
+     *
      * @param id
      */
     public void remove(int ID) {
@@ -186,6 +191,7 @@ public class ArticleModel {
 
     /**
      * search by ID
+     *
      * @param id
      */
     public int searchByID(int ID) {
@@ -200,6 +206,7 @@ public class ArticleModel {
 
     /**
      * search by Name
+     *
      * @param name
      */
     public void searchByName(String title) {
@@ -215,6 +222,7 @@ public class ArticleModel {
 
     /**
      * Search by Cate
+     *
      * @param cateID
      */
     public int searchByCate(int cateID) {
@@ -229,6 +237,7 @@ public class ArticleModel {
 
     /**
      * search by author name
+     *
      * @param authorName
      */
     public int searchByAuthorName(int mainAuthorID) {
@@ -243,22 +252,71 @@ public class ArticleModel {
 
     /**
      * search by Date public
+     *
      * @param datePub
+     * @return
      */
-    public void searchByDatePublic(String datePub) {
-        
+    public ArrayList<Article> searchByDatePublic(Date datePub) {
+        ArrayList<Article> list = new ArrayList<>();
+        for (int i = 0; i < articles.size(); i++) {
+            if (datePub.equals(articles.get(i).getDatePub())) {
+                list.add(articles.get(i));
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
     }
 
-    public void sortByDate() {
-        
+    /**
+     * sortbyDate
+     *
+     * @return
+     */
+    public ArrayList<Article> sortByDate() {
+        ArrayList<Article> list = new ArrayList<>();
+        for (int i = 0; i < articles.size(); i++) {
+            list.add(articles.get(i));
+        }
+        for (int i = 0; i < articles.size(); i++) {
+            for (int j = 0; j < articles.size() - i; j++) {
+                if (articles.get(j).getDatePub().after(articles.get(j + 1).getDatePub())) {
+                    Article a = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, a);
+                }
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
     }
 
-    public void get10lastestArticle() {
-       
+    /**
+     * get 10 latest articles
+     * @return 
+     */
+    public ArrayList<Article> get10latestArticle() {
+        ArrayList<Article> list = new ArrayList<>();
+        int sz = articles.size();
+        for (int i = 0; i < 10; i++) {
+            list.add(articles.get(sz));
+            sz--;
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
     }
 
     /**
      * updater rows per page
+     *
      * @param rows
      */
     public int updateRowsPerPage(int rows) {
@@ -267,7 +325,8 @@ public class ArticleModel {
 
     /**
      * toString articles
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
