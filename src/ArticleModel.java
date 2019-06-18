@@ -92,7 +92,7 @@ public class ArticleModel {
             throws SQLException, Exception {
         try {
             sqlStr = "";
-            pst = conn.prepareStatement(sqlStr);
+            pst = conn.prepareStatement(sqlStr,Statement.RETURN_GENERATED_KEYS);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
             pst.setInt(2, mainAuthorID);
@@ -105,7 +105,11 @@ public class ArticleModel {
             pst.setString(9, title);
             pst.setBoolean(10, status);
             pst.executeUpdate();
-            articles.add(new Article(id, mainAuthorID, editorID, cateID, content, datePub, destext, desPic, title, status));
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int idNew = rs.getInt(1);
+                articles.add(new Article(idNew, mainAuthorID, editorID, cateID, content, datePub, destext, desPic, title, status));
+            }
             return true;
         } catch (SQLException e) {
             throw e;
