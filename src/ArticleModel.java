@@ -85,13 +85,14 @@ public class ArticleModel {
      * @param desPic
      * @param title
      * @param status
-     * @return 
+     * @return
      * @throws java.sql.SQLException
      */
     public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
-            sqlStr = "";
+            sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?,?,?,?,?,?,?,?);";
+            pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             pst = conn.prepareStatement(sqlStr);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
@@ -105,7 +106,11 @@ public class ArticleModel {
             pst.setString(9, title);
             pst.setBoolean(10, status);
             pst.executeUpdate();
-            articles.add(new Article(id, mainAuthorID, editorID, cateID, content, datePub, destext, desPic, title, status));
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int idNew = rs.getInt(1);
+                articles.add(new Article(idNew, mainAuthorID, editorID, cateID, content, datePub, destext, desPic, title, status));
+            }
             return true;
         } catch (SQLException e) {
             throw e;
@@ -129,14 +134,13 @@ public class ArticleModel {
      * @param desPic
      * @param title
      * @param status
-     * @return 
-     * @throws java.sql.SQLException 
+     * @return
+     * @throws java.sql.SQLException
      */
-
     public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
-            sqlStr = "";
+            sqlStr = " UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?,?,?,?);";
             pst = conn.prepareStatement(sqlStr);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
@@ -219,7 +223,7 @@ public class ArticleModel {
         for (int i = 0; i < articles.size(); i++) {
             Article b = articles.get(i);
             if (b.getTittle() == title) {
-               return articles.get(i);
+                return articles.get(i);
             }
         }
         return null;
@@ -303,7 +307,8 @@ public class ArticleModel {
 
     /**
      * get 10 latest articles
-     * @return 
+     *
+     * @return
      */
     public ArrayList<Article> get10latestArticle() {
         ArrayList<Article> list = new ArrayList<>();
