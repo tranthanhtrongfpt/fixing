@@ -93,7 +93,6 @@ public class ArticleModel {
         try {
             sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?,?,?,?,?,?,?,?);";
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
-            pst = conn.prepareStatement(sqlStr);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
             pst.setInt(2, mainAuthorID);
