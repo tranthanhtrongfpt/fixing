@@ -84,9 +84,7 @@ public class CategoryModel {
             rs = pst.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
-                String name = rs.getString("Name");
-                boolean status = rs.getBoolean("Status");
-                cates.add(new Category(id, name, status));
+                cates.add(new Category(id, Name, Status));
             }
             return true;
         } catch (SQLException e) {

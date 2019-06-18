@@ -84,15 +84,18 @@ public class CommentModel {
     public boolean add(int artID, String content, String email, Date dateComment, boolean status) {
         try {
             sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?,?,?);";
-            pst = conn.prepareStatement(sqlStr);
+            pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, artID);
             pst.setString(2, content);
             pst.setString(3, email);
             pst.setDate(4, (java.sql.Date) dateComment);
             pst.setBoolean(5, status);
             pst.executeUpdate();
-            int sz = coms.size();
-            coms.add(new Comment(sz, artID, content, email, dateComment, status));
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                coms.add(new Comment(id, artID, content, email, dateComment, status));
+            }
             return true;
         } catch (SQLException e) {
             return false;
