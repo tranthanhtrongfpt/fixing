@@ -80,7 +80,6 @@ public class CategoryModel {
             pst.setString(1, Name);
             pst.setBoolean(2, Status);
             pst.executeUpdate();
-            int sz = cates.size();
             rs = pst.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
