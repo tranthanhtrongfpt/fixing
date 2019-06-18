@@ -97,20 +97,22 @@ public class UserModel {
     ) throws SQLException, Exception {
         try {
             sqlStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?);";
-            pst = conn.prepareStatement(sqlStr);
-            int id = users.get(users.size() - 1).getID() + 1;
-            pst.setInt(1, id);
-            pst.setString(2, username);
-            pst.setString(3, password);
-            pst.setString(4, name);
-            pst.setString(5, email);
-            pst.setString(6, gender);
-            pst.setString(7, birthday);
-            pst.setString(8, phone);
-            pst.setInt(9, role_id);
-            pst.setBoolean(10, status);
+            pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, name);
+            pst.setString(4, email);
+            pst.setString(5, gender);
+            pst.setString(6, birthday);
+            pst.setString(7, phone);
+            pst.setInt(8, role_id);
+            pst.setBoolean(9, status);
             pst.executeUpdate();
-            users.add(new User(id, username, password, name, email, gender, birthday, phone, role_id, status));
+            int sz = users.size();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                users.add(new User(id, username, password, name, email, gender, birthday, phone, role_id, status));
+            }
             return true;
         } catch (SQLException e) {
             return false;
