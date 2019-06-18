@@ -2,6 +2,7 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.RowId;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -75,12 +76,18 @@ public class CategoryModel {
     public boolean add(String Name, boolean Status) throws SQLException {
         try {
             sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?);";
-            pst = conn.prepareStatement(sqlStr);
+            pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, Name);
             pst.setBoolean(2, Status);
             pst.executeUpdate();
             int sz = cates.size();
-            cates.add(new Category(sz, Name, Status));
+            rs = pst.getGeneratedKeys();
+            if (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString("Name");
+                boolean status = rs.getBoolean("Status");
+                cates.add(new Category(id, name, status));
+            }
             return true;
         } catch (SQLException e) {
             return false;

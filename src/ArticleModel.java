@@ -75,15 +75,18 @@ public class ArticleModel {
     /**
      * add function for adding the new article
      *
+     * @param iD
      * @param content
      * @param mainAuthorID
+     * @param cateID
      * @param editorID
      * @param datePub
-     * @param CateID
-     * @param DesPic
-     * @param DesText
-     * @param Title
+     * @param destext
+     * @param desPic
+     * @param title
      * @param status
+     * @return 
+     * @throws java.sql.SQLException
      */
     public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
@@ -116,17 +119,20 @@ public class ArticleModel {
     /**
      * update article
      *
-     * @param id
+     * @param iD
      * @param content
+     * @param editorID
+     * @param cateID
      * @param mainAuthorID
-     * @param EditorID
      * @param datePub
-     * @param CateID
-     * @param DesPic
-     * @param DesText
-     * @param Title
-     * @param Status
+     * @param destext
+     * @param desPic
+     * @param title
+     * @param status
+     * @return 
+     * @throws java.sql.SQLException 
      */
+
     public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
