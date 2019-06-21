@@ -1,6 +1,5 @@
 package Class;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * @author HAT team Group 3
- * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class RoleModel {
 
@@ -24,7 +22,8 @@ public class RoleModel {
 
     /**
      * Constructor for initial the things
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public RoleModel() throws SQLException {
         try {
@@ -40,13 +39,15 @@ public class RoleModel {
             throw e;
         }
     }
+
     /**
      * Load function for loading the stuff
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     public void load() throws SQLException {
         try {
-            sqlStr = "SELECT * FROM " + tableName + "";
+            sqlStr = "SELECT * FROM `role` WHERE 1";
             rs = st.executeQuery(sqlStr);
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
@@ -64,8 +65,9 @@ public class RoleModel {
 
     /**
      * search by ID
+     *
      * @param id
-     * @return 
+     * @return
      */
     public int searchByID(int id) {
         for (int i = 0; i < roles.size(); i++) {
@@ -76,14 +78,16 @@ public class RoleModel {
         }
         return -1;
     }
+
     /**
      * search By name
+     *
      * @param name
-     * @return 
+     * @return
      */
-    public Role searchByName(String name){
-        for(int i=0;i<roles.size();i++){
-            if(roles.get(i).getRole_Title().equalsIgnoreCase(name)){
+    public Role searchByName(String name) {
+        for (int i = 0; i < roles.size(); i++) {
+            if (roles.get(i).getRole_Title().equalsIgnoreCase(name)) {
                 return roles.get(i);
             }
         }
@@ -92,8 +96,9 @@ public class RoleModel {
 
     /**
      * get role
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Role getRole(int id) {
         int idx = searchByID(id);
@@ -106,7 +111,8 @@ public class RoleModel {
 
     /**
      * get size
-     * @return 
+     *
+     * @return
      */
     public int getSize() {
         return roles.size();
@@ -119,5 +125,14 @@ public class RoleModel {
             str += w.getID() + ". " + w.getRole_Title() + "\n";
         }
         return str;
+    }
+
+    /**
+     * return list of object
+     *
+     * @return
+     */
+    public ArrayList<Role> getRoleList() {
+        return roles;
     }
 }

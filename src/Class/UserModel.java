@@ -146,18 +146,18 @@ public class UserModel {
             String phone, int role_id, boolean status
     ) throws SQLException, Exception {
         try {
-            sqlStr = "UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?,?,?,?,?);";
+            sqlStr = "UPDATE `user` SET `Username`=?,`Password`=?,`Name`=?,`Email`=?,`Gender`=?,`Birthdate`=?,`Phone`=?,`Role_ID`=?,`Status`=? WHERE `ID`=? ";
             pst = conn.prepareStatement(sqlStr);
-            pst.setInt(1, id);
-            pst.setString(2, username);
-            pst.setString(3, password);
-            pst.setString(4, name);
-            pst.setString(5, email);
-            pst.setString(6, gender);
-            pst.setString(7, birthday);
-            pst.setString(8, phone);
-            pst.setInt(9, role_id);
-            pst.setBoolean(10, status);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            pst.setString(3, name);
+            pst.setString(4, email);
+            pst.setString(5, gender);
+            pst.setString(6, birthday);
+            pst.setString(7, phone);
+            pst.setInt(8, role_id);
+            pst.setBoolean(9, status);
+            pst.setInt(10, id);
             pst.executeUpdate();
             getUser(id).setUsername(username);
             getUser(id).setPassword(password);
@@ -247,7 +247,7 @@ public class UserModel {
      */
     public ArrayList SortByName() {
         ArrayList<User> u = new ArrayList<>();
-        System.arraycopy(users, 0, u, 0, users.size());
+        u = users;
         Collections.sort(u, new Comparator<User>() {
             @Override
             public int compare(User s1, User s2) {
@@ -298,6 +298,11 @@ public class UserModel {
         return str;
     }
 
+    /**
+     * return list of object
+     *
+     * @return
+     */
     public ArrayList<User> getUserList() {
         return users;
     }
