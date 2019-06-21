@@ -80,15 +80,15 @@ public class RoleModel {
     }
 
     /**
-     * search By name
+     * search By id
      *
-     * @param name
+     * @param id
      * @return
      */
-    public Role searchByName(String name) {
+    public String searchById2(int id) {
         for (int i = 0; i < roles.size(); i++) {
-            if (roles.get(i).getRole_Title().equalsIgnoreCase(name)) {
-                return roles.get(i);
+            if (roles.get(i).getID() == id) {
+                return roles.get(i).getRole_Title();
             }
         }
         return null;

@@ -91,14 +91,14 @@ public class UserModel {
      * @throws Exception
      */
     public boolean addUser(
-            String username, String password, String name,
+            String username, String name,
             String email, String gender, String birthday,
             String phone, int role_id, boolean status
     ) throws SQLException, Exception {
         try {
             sqlStr = "INSERT INTO `user`(`ID`, `Username`, `Password`, `Name`, `Email`, `Gender`, `Birthdate`, `Phone`, `Role_ID`, `Status`) VALUES (null,?,?,?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
-
+            String password = "12345678";
             pst.setString(1, username);
             pst.setString(2, password);
             pst.setString(3, name);
@@ -141,26 +141,24 @@ public class UserModel {
      * @throws Exception
      */
     public boolean updateUser(
-            int id, String username, String password, String name,
+            int id, String username, String name,
             String email, String gender, String birthday,
             String phone, int role_id, boolean status
     ) throws SQLException, Exception {
         try {
-            sqlStr = "UPDATE `user` SET `Username`=?,`Password`=?,`Name`=?,`Email`=?,`Gender`=?,`Birthdate`=?,`Phone`=?,`Role_ID`=?,`Status`=? WHERE `ID`=? ";
+            sqlStr = "UPDATE `user` SET `Username`=?,`Name`=?,`Email`=?,`Gender`=?,`Birthdate`=?,`Phone`=?,`Role_ID`=?,`Status`=? WHERE `ID`=? ";
             pst = conn.prepareStatement(sqlStr);
             pst.setString(1, username);
-            pst.setString(2, password);
-            pst.setString(3, name);
-            pst.setString(4, email);
-            pst.setString(5, gender);
-            pst.setString(6, birthday);
-            pst.setString(7, phone);
-            pst.setInt(8, role_id);
-            pst.setBoolean(9, status);
-            pst.setInt(10, id);
+            pst.setString(2, name);
+            pst.setString(3, email);
+            pst.setString(4, gender);
+            pst.setString(5, birthday);
+            pst.setString(6, phone);
+            pst.setInt(7, role_id);
+            pst.setBoolean(8, status);
+            pst.setInt(9, id);
             pst.executeUpdate();
             getUser(id).setUsername(username);
-            getUser(id).setPassword(password);
             getUser(id).setName(name);
             getUser(id).setEmail(email);
             getUser(id).setGender(gender);
@@ -168,6 +166,35 @@ public class UserModel {
             getUser(id).setPhone(phone);
             getUser(id).setRole_ID(role_id);
             getUser(id).setStatus(status);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * Update user base on id
+     *
+     * @param id
+     * @param password
+     * @return
+     * @throws SQLException
+     * @throws Exception
+     */
+    public boolean updatePasswordUser(
+            int id, String password
+    ) throws SQLException, Exception {
+        try {
+            sqlStr = "UPDATE `user` SET `Password`=? WHERE `ID`=? ";
+            pst = conn.prepareStatement(sqlStr);
+            pst.setString(1, password);
+            pst.setInt(2, id);
+            pst.executeUpdate();
+
+            getUser(id).setPassword(password);
+
             return true;
         } catch (SQLException e) {
             return false;
@@ -217,7 +244,7 @@ public class UserModel {
     public ArrayList SearchByPhone(String phone) {
         ArrayList<User> arr = new ArrayList<>();
         for (User u : users) {
-            if (u.getPhone().toLowerCase().contains(phone.trim().toLowerCase())) {
+            if (u.getPhone().trim().contains(phone.trim().toLowerCase())) {
                 arr.add(u);
             }
         }
@@ -233,7 +260,7 @@ public class UserModel {
     public ArrayList SearchByEmail(String email) {
         ArrayList<User> arr = new ArrayList<>();
         for (User u : users) {
-            if (u.getEmail().toLowerCase().contains(email.trim().toLowerCase())) {
+            if (u.getEmail().toLowerCase().trim().contains(email.trim().toLowerCase())) {
                 arr.add(u);
             }
         }
