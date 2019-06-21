@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package TextModel;
+
 import Class.*;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -13,15 +15,22 @@ import java.util.ArrayList;
  */
 public class HungTestDB {
 
+    private static Connection conn;
+    private static UserModel um;
+
     public static void main(String[] args) {
         try {
-            UserModel um = new UserModel();
+            conn = DataConnection.getConnection();
+            um = new UserModel();
             um.Load();
-            ArrayList<User> list = um.getUserList();
-            for (int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i).toString());
+            if (DataConnection.isConnection()) {
+                System.out.println(um.toString());
+                
+            } else {
+                System.out.println("Error");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

@@ -17,7 +17,7 @@ import java.util.Comparator;
 public class UserModel {
 
     //declare some variables
-    private String tableName = "User";
+    private String tableName = "user";
     private Connection conn;
     private Statement st;
     private PreparedStatement pst;
@@ -52,7 +52,8 @@ public class UserModel {
      */
     public void Load() throws SQLException {
         try {
-            sqlStr = "SELECT * FROM " + tableName + "";
+            sqlStr = "SELECT * FROM `user` WHERE 1";
+            System.out.println("hung");
             rs = st.executeQuery(sqlStr);
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
@@ -62,7 +63,7 @@ public class UserModel {
                     String name = rs.getString("Name");
                     String email = rs.getString("Email");
                     String gender = rs.getString("Gender");
-                    String birthday = rs.getString("Birthday");
+                    String birthday = rs.getString("Birthdate");
                     String phone = rs.getString("Phone");
                     int role_id = rs.getInt("Role_ID");
                     boolean status = rs.getBoolean("Status");
