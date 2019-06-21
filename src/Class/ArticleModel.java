@@ -1,6 +1,5 @@
 package Class;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,10 +22,10 @@ public class ArticleModel {
     private String sqlStr;
     private ArrayList<Article> articles;
 
-     public ArrayList<Article> getsArticleList() {
+    public ArrayList<Article> getsArticleList() {
         return articles;
-    } 
-     
+    }
+
     /**
      * Article constructor
      *
@@ -59,11 +58,11 @@ public class ArticleModel {
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     int Id = rs.getInt("ID");
-                    String content   = rs.getString("Content");
-                   int Main_Author_ID = rs.getInt("Main Author ID");
-                   int Editor_ID = rs.getInt("Editor ID");
-                   Date Date_Pub = rs.getDate("Date Publish");
-                   int Cate_ID = rs.getInt("Cate ID");
+                    String content = rs.getString("Content");
+                    int Main_Author_ID = rs.getInt("Main Author ID");
+                    int Editor_ID = rs.getInt("Editor ID");
+                    Date Date_Pub = rs.getDate("Date Publish");
+                    int Cate_ID = rs.getInt("Cate ID");
                     String Des_Pic = rs.getString("Des_Pic");
                     String Des_Text = rs.getString("Des_Text");
                     String Title = rs.getString("Title");
@@ -101,13 +100,13 @@ public class ArticleModel {
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
-            pst.setInt(2, mainAuthorID);
-            pst.setInt(3, editorID);
-            pst.setInt(4, cateID);
-            pst.setString(5, content);
-            pst.setDate(6, (java.sql.Date) datePub);
-            pst.setString(7, destext);
-            pst.setString(8, desPic);
+            pst.setString(2, content);
+            pst.setInt(3, mainAuthorID);
+            pst.setInt(4, editorID);
+            pst.setDate(5, (java.sql.Date) datePub);
+            pst.setInt(6, cateID);
+            pst.setString(7, desPic);
+            pst.setString(8, destext);
             pst.setString(9, title);
             pst.setBoolean(10, status);
             pst.executeUpdate();
@@ -149,13 +148,13 @@ public class ArticleModel {
             pst = conn.prepareStatement(sqlStr);
             int id = articles.get(articles.size() - 1).getID() + 1;
             pst.setInt(1, id);
-            pst.setInt(2, mainAuthorID);
-            pst.setInt(3, editorID);
-            pst.setInt(4, cateID);
-            pst.setString(5, content);
-            pst.setDate(6, (java.sql.Date) datePub);
-            pst.setString(7, destext);
-            pst.setString(8, desPic);
+            pst.setString(2, content);
+            pst.setInt(3, mainAuthorID);
+            pst.setInt(4, editorID);
+            pst.setDate(5, (java.sql.Date) datePub);
+            pst.setInt(6, cateID);
+            pst.setString(7, desPic);
+            pst.setString(8, destext);
             pst.setString(9, title);
             pst.setBoolean(10, status);
             pst.executeUpdate();
