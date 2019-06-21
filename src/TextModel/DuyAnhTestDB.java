@@ -14,6 +14,10 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class DuyAnhTestDB {
+    /**
+     * Main fucntion
+     * @param args 
+     */
     public static void main(String[] args) {
         try {
             ArticleModel am = new ArticleModel();
