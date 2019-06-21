@@ -59,16 +59,16 @@ public class ArticleModel {
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     int Id = rs.getInt("ID");
-                    String username = rs.getString("Username");
-                    String password = rs.getString("Password");
-                    Date name = rs.getDate("Name");
-                    String email = rs.getString("Email");
-                    String gender = rs.getString("Gender");
-                    String birthday = rs.getString("Birthday");
-                    String phone = rs.getString("Phone");
-                    int role_id = rs.getInt("Role_ID");
+                    String content   = rs.getString("Content");
+                   int Main_Author_ID = rs.getInt("Main Author ID");
+                   int Editor_ID = rs.getInt("Editor ID");
+                   Date Date_Pub = rs.getDate("Date Publish");
+                   int Cate_ID = rs.getInt("Cate ID");
+                    String Des_Pic = rs.getString("Des_Pic");
+                    String Des_Text = rs.getString("Des_Text");
+                    String Title = rs.getString("Title");
                     boolean status = rs.getBoolean("Status");
-                    articles.add(new Article(Id, role_id, role_id, role_id, phone, name, gender, email, phone, status));
+                    articles.add(new Article(Id, Main_Author_ID, Editor_ID, Cate_ID, content, Date_Pub, Des_Text, Des_Pic, Title, status));
                 }
             }
         } catch (SQLException e) {
