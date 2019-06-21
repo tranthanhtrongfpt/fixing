@@ -24,7 +24,13 @@ public class HungTestDB {
             um = new UserModel();
             um.Load();
             if (DataConnection.isConnection()) {
-                System.out.println(um.toString());
+//                um.addUser("Duyanh", "12345678", "Duy Anh", "duyanh@gmail.com", "Male", "1999-11-05","0918241211", 1, true);
+//                um = new UserModel();
+//                um.Load();
+//                ArrayList<User> list = um.getUserList();
+//                for (int i = 0; i < list.size(); i++) {
+//                    System.out.println(list.get(i).toString());
+//                }
                 
             } else {
                 System.out.println("Error");

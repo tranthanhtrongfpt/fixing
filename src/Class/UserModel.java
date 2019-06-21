@@ -1,6 +1,5 @@
 package Class;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * @author HAT team 
- * Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class UserModel {
 
@@ -53,7 +51,6 @@ public class UserModel {
     public void Load() throws SQLException {
         try {
             sqlStr = "SELECT * FROM `user` WHERE 1";
-            System.out.println("hung");
             rs = st.executeQuery(sqlStr);
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
@@ -99,8 +96,9 @@ public class UserModel {
             String phone, int role_id, boolean status
     ) throws SQLException, Exception {
         try {
-            sqlStr = "INSERT INTO " + tableName + " VALUES (?,?,?,?,?,?,?,?);";
+            sqlStr = "INSERT INTO `user`(`ID`, `Username`, `Password`, `Name`, `Email`, `Gender`, `Birthdate`, `Phone`, `Role_ID`, `Status`) VALUES (null,?,?,?,?,?,?,?,?,?)";
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
+
             pst.setString(1, username);
             pst.setString(2, password);
             pst.setString(3, name);
@@ -118,6 +116,7 @@ public class UserModel {
             }
             return true;
         } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         } catch (Exception e) {
             return false;
@@ -298,8 +297,8 @@ public class UserModel {
         }
         return str;
     }
-    
-    public ArrayList<User> getUserList(){
+
+    public ArrayList<User> getUserList() {
         return users;
     }
 }
