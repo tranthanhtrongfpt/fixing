@@ -1,3 +1,5 @@
+package Class;
+
 import java.util.ArrayList;
 /**
  * @author HAT team Group 3

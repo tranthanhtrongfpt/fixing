@@ -1,3 +1,5 @@
+package Class;
+
 
 /**
  * @author HAT team Group 3
