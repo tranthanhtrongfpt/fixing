@@ -23,6 +23,10 @@ public class ArticleModel {
     private String sqlStr;
     private ArrayList<Article> articles;
 
+     public ArrayList<Article> getsArticleList() {
+        return articles;
+    } 
+     
     /**
      * Article constructor
      *

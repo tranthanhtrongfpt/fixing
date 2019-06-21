@@ -5,9 +5,11 @@
  */
 package TextModel;
 
-import Class.User;
-import Class.UserModel;
+import Class.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,13 +18,14 @@ import java.util.ArrayList;
 public class DuyAnhTestDB {
     public static void main(String[] args) {
         try {
-            UserModel um = new UserModel();
-            um.Load();
-            ArrayList<User> list = um.getUserList();
+            ArticleModel am = new ArticleModel();
+            am.Load();
+            ArrayList<Article> list = am.getsArticleList();
             for (int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i).toString());
+              System.out.println(list.get(i).toString());
             }
-        } catch (Exception e) {
+        } catch (SQLException ex) {
+           //Logger.getLogger(DuyAnhTestDB.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
