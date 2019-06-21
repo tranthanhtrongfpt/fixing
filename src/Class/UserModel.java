@@ -297,4 +297,8 @@ public class UserModel {
         }
         return str;
     }
+    
+    public ArrayList<User> getUserList(){
+        return users;
+    }
 }
