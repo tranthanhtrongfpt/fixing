@@ -5,8 +5,10 @@
  */
 package TextModel;
 
+import Class.Category;
+import Class.CategoryModel;
 import Class.User;
-import Class.UserModel;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -16,13 +18,13 @@ import java.util.ArrayList;
 public class TrongTestDB {
     public static void main(String[] args) {
         try {
-            UserModel um = new UserModel();
-            um.Load();
-            ArrayList<User> list = um.getUserList();
+            CategoryModel um = new CategoryModel();
+            um.load();
+            ArrayList<Category> list = um.getCates();
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 }
