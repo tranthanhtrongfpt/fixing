@@ -291,7 +291,6 @@ public class Article implements Comparable {
     @Override
     public String toString() {
         String str = "";
-
         str += ID + ". " + mainAuthorID + ". " + editorID
                 + ". " + datePub + ". " + cateID + ". " + title
                 + ". " + status + "\n";

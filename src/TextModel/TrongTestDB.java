@@ -7,7 +7,10 @@ package TextModel;
 
 import Class.Category;
 import Class.CategoryModel;
+import Class.Comment;
+import Class.CommentModel;
 import Class.User;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -18,12 +21,24 @@ import java.util.ArrayList;
 public class TrongTestDB {
     public static void main(String[] args) {
         try {
-            CategoryModel um = new CategoryModel();
-            um.load();
-            ArrayList<Category> list = um.getCates();
+            CategoryModel cm = new CategoryModel();
+            cm.load();
+            ArrayList<Category> list = cm.getCates();
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
+            cm.add("New Cate", false);
+            
+            
+            
+            
+            CommentModel comm = new CommentModel();
+            comm.load();
+            ArrayList<Comment> listComs = comm.getComs();
+            for (int i = 0; i < listComs.size(); i++) {
+                System.out.println(listComs.get(i).toString());
+            }
+            comm.add(12, "Boring art", "thanhtrong@gam.com","1999-12-12", true);
         } catch (SQLException e) {
         }
     }

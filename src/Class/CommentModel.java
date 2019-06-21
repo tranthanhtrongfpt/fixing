@@ -61,7 +61,7 @@ public class CommentModel {
                     int artID = rs.getInt("Art_ID");
                     String content = rs.getString("Content");
                     String email = rs.getString("Email");
-                    Date date = rs.getDate("Date_Comment");
+                    String date = rs.getString("Date_Comment");
                     boolean status = rs.getBoolean("Status");
                     coms.add(new Comment(id, artID, content, email, date, status));
                 }
@@ -83,14 +83,14 @@ public class CommentModel {
      * @param email
      * @return
      */
-    public boolean add(int artID, String content, String email, Date dateComment, boolean status) {
+    public boolean add(int artID, String content, String email, String dateComment, boolean status) {
         try {
-            sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?,?,?);";
+            sqlStr = "INSERT INTO " + tableName + " (`ID`, `Art_ID`, `Content`, `Email`, `Date_Comment`, `Status`) VALUES (null,?,?,?,?,?);";
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, artID);
             pst.setString(2, content);
             pst.setString(3, email);
-            pst.setDate(4, (java.sql.Date) dateComment);
+            pst.setString(4,dateComment);
             pst.setBoolean(5, status);
             pst.executeUpdate();
             rs = pst.getGeneratedKeys();
@@ -117,7 +117,7 @@ public class CommentModel {
      * @param status
      * @return
      */
-    public boolean update(int id, int artID, String content, String email, Date dateComment, boolean status) {
+    public boolean update(int id, int artID, String content, String email, String dateComment, boolean status) {
         try {
             sqlStr = "UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?);";
             pst = conn.prepareStatement(sqlStr);
@@ -126,7 +126,7 @@ public class CommentModel {
             pst.setInt(3, artID);
             pst.setString(4, content);
             pst.setString(5, email);
-            pst.setDate(6, (java.sql.Date) dateComment);
+            pst.setString(6,dateComment);
             pst.setBoolean(7, status);
             pst.executeUpdate();
             coms.set(id, new Comment(id, artID, content, email, dateComment, status));
@@ -157,7 +157,7 @@ public class CommentModel {
         System.arraycopy(coms, 0, list, 0, coms.size());
         for (int i = 0; i < coms.size(); i++) {
             for (int j = 0; j < coms.size() - i; j++) {
-                if (coms.get(j).getDate_Comment().after(coms.get(j+1).getDate_Comment())) {
+                if (true) {
                     Comment a = list.get(j);
                     list.set(j, list.get(j + 1));
                     list.set(j + 1, a);
@@ -223,6 +223,11 @@ public class CommentModel {
         } else {
             return list;
         }
+    }
+    
+    
+    public ArrayList<Comment> getComs(){
+        return coms;
     }
     
 

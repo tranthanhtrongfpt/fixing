@@ -80,7 +80,7 @@ public class CategoryModel {
      */
     public boolean add(String Name, boolean Status) throws SQLException {
         try {
-            sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?);";
+            sqlStr = "INSERT INTO " + tableName + " (`ID`, `NAME`, `Status`) VALUES (null,?,?);";
             pst = conn.prepareStatement(sqlStr, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, Name);
             pst.setBoolean(2, Status);

@@ -18,7 +18,7 @@ public class Comment implements Comparable {
     private int artID;
     private String content;
     private String email;
-    private Date dateComment;
+    private String dateComment;
     private boolean status;
 
     /**
@@ -31,7 +31,7 @@ public class Comment implements Comparable {
      * @param dateComment
      * @param status
      */
-    public Comment(int ID, int artID, String content, String email, Date dateComment, boolean status) {
+    public Comment(int ID, int artID, String content, String email, String dateComment, boolean status) {
         this.ID = ID;
         this.artID = artID;
         this.content = content;
@@ -133,7 +133,7 @@ public class Comment implements Comparable {
      *
      * @return
      */
-    public Date getDate_Comment() {
+    public String getDate_Comment() {
         return this.dateComment;
     }
 
@@ -143,7 +143,7 @@ public class Comment implements Comparable {
      * @param aDate_Comment
      * @throws .CommentException
      */
-    public void setDate_Comment(Date aDate_Comment) throws CommentException {
+    public void setDate_Comment(String aDate_Comment) throws CommentException {
         if (aDate_Comment.toString().isEmpty()) {
             throw new CommentException("Date must be valid");
         }
