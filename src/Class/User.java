@@ -1,11 +1,12 @@
 package Class;
 
 import java.util.ArrayList;
+import java.util.Objects;
 /**
  * @author HAT team Group 3
  * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
-public class User {
+public class User implements Comparable{
 
     //input data
     private int ID;
@@ -294,6 +295,12 @@ public class User {
             this.status = true;
         }
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        User u = (User) obj;
+        return name.equals(u.getUsername());
+    }
 
     /**
      * get article function
@@ -313,5 +320,29 @@ public class User {
         } else {
             return list;
         }
+    }
+    
+    @Override
+    public String toString(){
+        String str = "";
+        
+            str += ID + ". " + username + ". " + password
+                    + ". " + name + ". " + email + ". " + gender
+                    + ". " + birthday + ". " + phone
+                    + ". " + role_ID + ". " + status + "\n";
+        return str;
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        User u = (User) o;
+        int result = this.username.compareToIgnoreCase(u.getUsername());
+        if (result == 0) {
+            result = this.getPhone().compareToIgnoreCase(u.getPhone());
+        }
+        if (result == 0) {
+            result = this.username.compareToIgnoreCase(u.getUsername());
+        }
+        return result;
     }
 }
