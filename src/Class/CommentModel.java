@@ -119,15 +119,15 @@ public class CommentModel {
      */
     public boolean update(int id, int artID, String content, String email, String dateComment, boolean status) {
         try {
-            sqlStr = "UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?);";
+            sqlStr = "UPDATE " + tableName + " SET `ID`=?,`Art_ID`=?,`Content`=?,`Email`=?,`Date_Comment`=?,`Status`=? where `ID`=?";
             pst = conn.prepareStatement(sqlStr);
             pst.setInt(1, id);
-            pst.setInt(2, id);
-            pst.setInt(3, artID);
-            pst.setString(4, content);
-            pst.setString(5, email);
-            pst.setString(6,dateComment);
-            pst.setBoolean(7, status);
+            pst.setInt(2, artID);
+            pst.setString(3, content);
+            pst.setString(4, email);
+            pst.setString(5,dateComment);
+            pst.setBoolean(6, status);
+            pst.setInt(7, id);
             pst.executeUpdate();
             coms.set(id, new Comment(id, artID, content, email, dateComment, status));
             return true;

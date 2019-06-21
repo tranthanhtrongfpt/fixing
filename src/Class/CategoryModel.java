@@ -108,12 +108,13 @@ public class CategoryModel {
      */
     public boolean update(int id, String name, boolean status) {
         try {
-            sqlStr = "UPDATE " + tableName + " where `ID`=? VALUES (?,?,?);";
+            sqlStr = "UPDATE " + tableName + " SET `ID`=?,`NAME`=?,`Status`=? where `ID`=?;";//UPDATE `category` SET `ID`=1,`NAME`="Super Word",`Status`=true WHERE `ID`=1
             pst = conn.prepareStatement(sqlStr);
             pst.setInt(1, id);
-            pst.setInt(2, id);
-            pst.setString(3, name);
-            pst.setBoolean(4, status);
+            pst.setString(2, name);
+            pst.setBoolean(3, status);
+           
+            pst.setInt(4, id);
             pst.executeUpdate();
             cates.set(id, new Category(id, name, status));
             return true;

@@ -27,8 +27,8 @@ public class TrongTestDB {
             for (int i = 0; i < list.size(); i++) {
                 System.out.println(list.get(i).toString());
             }
-            cm.add("New Cate", false);
-            
+           // cm.add("New Cate", false);
+            cm.update(1, "SUper han", true);
             
             
             
@@ -38,7 +38,7 @@ public class TrongTestDB {
             for (int i = 0; i < listComs.size(); i++) {
                 System.out.println(listComs.get(i).toString());
             }
-            comm.add(12, "Boring art", "thanhtrong@gam.com","1999-12-12", true);
+           // comm.add(12, "Boring art", "thanhtrong@gam.com","1999-12-12", true);
         } catch (SQLException e) {
         }
     }
