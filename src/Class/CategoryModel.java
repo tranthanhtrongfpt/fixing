@@ -42,6 +42,9 @@ public class CategoryModel {
             throw e;
         }
     }
+    public ArrayList<Category> getCates(){
+        return cates;
+    }
 
     /**
      * Load function for loading the stuff
