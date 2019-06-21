@@ -1,14 +1,11 @@
 package Class;
 
-
 import java.util.Date;
 
-
 /**
- * @author HAT team Group 3
- * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
-public class Article {
+public class Article implements Comparable {
 
     private int ID;
     private String content;
@@ -23,6 +20,7 @@ public class Article {
 
     /**
      * Article stuff
+     *
      * @param iD
      * @param mainAuthorID
      * @param editorID
@@ -32,7 +30,7 @@ public class Article {
      * @param destext
      * @param desPic
      * @param title
-     * @param status 
+     * @param status
      */
     public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status) {
         this.ID = iD;
@@ -49,7 +47,8 @@ public class Article {
 
     /**
      * get ID
-     * @return 
+     *
+     * @return
      */
     public int getID() {
         return ID;
@@ -57,8 +56,9 @@ public class Article {
 
     /**
      * set ID
+     *
      * @param aID
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setID(int aID) throws ArticleException {
         if (aID <= 0) {
@@ -70,17 +70,18 @@ public class Article {
 
     /**
      * get content
-     * @return 
+     *
+     * @return
      */
     public String getContent() {
         return content;
     }
-    
 
     /**
      * set content
+     *
      * @param content
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setContent(String content) throws ArticleException {
         if (content.isEmpty()) {
@@ -92,7 +93,8 @@ public class Article {
 
     /**
      * get main author ID
-     * @return 
+     *
+     * @return
      */
     public int getMainAuthorID() {
         return mainAuthorID;
@@ -100,8 +102,9 @@ public class Article {
 
     /**
      * set main author ID
+     *
      * @param mainAuthorID
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setMainAuthorID(int mainAuthorID) throws ArticleException {
         if (mainAuthorID <= 0) {
@@ -113,7 +116,8 @@ public class Article {
 
     /**
      * get editor id
-     * @return 
+     *
+     * @return
      */
     public int getEditorID() {
         return editorID;
@@ -121,8 +125,9 @@ public class Article {
 
     /**
      * set editor ID
+     *
      * @param editorID
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setEditorID(int editorID) throws ArticleException {
         if (editorID <= 0) {
@@ -134,7 +139,8 @@ public class Article {
 
     /**
      * get Date publish
-     * @return 
+     *
+     * @return
      */
     public Date getDatePub() {
         return datePub;
@@ -142,8 +148,9 @@ public class Article {
 
     /**
      * set date publish
+     *
      * @param datePub
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setDatePub(Date datePub) throws ArticleException {
         if (datePub.equals(null)) {
@@ -155,7 +162,8 @@ public class Article {
 
     /**
      * get category id
-     * @return 
+     *
+     * @return
      */
     public int getCateID() {
         return cateID;
@@ -163,8 +171,9 @@ public class Article {
 
     /**
      * set category id
+     *
      * @param cateID
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setCateID(int cateID) throws ArticleException {
         if (cateID <= 0) {
@@ -176,7 +185,8 @@ public class Article {
 
     /**
      * get description picture
-     * @return 
+     *
+     * @return
      */
     public String getDesPic() {
         return desPic;
@@ -184,8 +194,9 @@ public class Article {
 
     /**
      * set description picture
+     *
      * @param aDesPic
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setDesPic(String aDesPic) throws ArticleException {
         if (aDesPic.isEmpty()) {
@@ -197,7 +208,8 @@ public class Article {
 
     /**
      * get description text
-     * @return 
+     *
+     * @return
      */
     public String getDestext() {
         return destext;
@@ -205,8 +217,9 @@ public class Article {
 
     /**
      * set description text
+     *
      * @param destext
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setDestext(String destext) throws ArticleException {
         if (destext.isEmpty()) {
@@ -218,7 +231,8 @@ public class Article {
 
     /**
      * get title
-     * @return 
+     *
+     * @return
      */
     public String getTittle() {
         return title;
@@ -226,8 +240,9 @@ public class Article {
 
     /**
      * set title
+     *
      * @param aTitle
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setTittle(String aTitle) throws ArticleException {
         if (title.isEmpty()) {
@@ -239,7 +254,8 @@ public class Article {
 
     /**
      * get status
-     * @return 
+     *
+     * @return
      */
     public boolean getStatus() {
         return status;
@@ -247,10 +263,51 @@ public class Article {
 
     /**
      * set status
+     *
      * @param status
-     * @throws ArticleException 
+     * @throws ArticleException
      */
     public void setStatus(boolean status) throws ArticleException {
         this.status = status;
+    }
+
+    /**
+     * set equals
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        Article u = (Article) obj;
+        return title.equals(u.getTittle());
+    }
+
+    /**
+     * display user
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += ID + ". " + mainAuthorID + ". " + editorID
+                + ". " + datePub + ". " + cateID + ". " + title
+                + ". " + status + "\n";
+        return str;
+    }
+
+    /**
+     * compare username
+     *
+     * @param o
+     * @return
+     */
+    @Override
+    public int compareTo(Object o) {
+        Article u = (Article) o;
+        int result = this.title.compareToIgnoreCase(u.title);
+        return result;
     }
 }

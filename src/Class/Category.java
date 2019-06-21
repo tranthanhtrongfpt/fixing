@@ -1,12 +1,11 @@
 package Class;
 
-
 import java.util.ArrayList;
 
 /**
  * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
-public class Category {
+public class Category implements Comparable {
 
     private int id;//declare variables
     private String name;
@@ -99,7 +98,8 @@ public class Category {
 
     /**
      * disable
-     * @param id 
+     *
+     * @param id
      */
     public void disable(int id) {
         if (this.id == id) {
@@ -109,7 +109,8 @@ public class Category {
 
     /**
      * active function
-     * @param id 
+     *
+     * @param id
      */
     public void active(int id) {
         if (this.id == id) {
@@ -119,9 +120,10 @@ public class Category {
 
     /**
      * get article function
+     *
      * @param la
      * @param id
-     * @return 
+     * @return
      */
     public ArrayList<Article> getArticlesByCateID(ArrayList<Article> la, int id) {
         ArrayList<Article> list = new ArrayList<>();
@@ -135,5 +137,64 @@ public class Category {
         } else {
             return list;
         }
+    }
+
+    /**
+     * get article function
+     *
+     * @param la
+     * @param id
+     * @return
+     */
+    public ArrayList<Article> getArticles(ArrayList<Article> la) {
+        ArrayList<Article> list = new ArrayList<>();
+        for (int i = 0; i < la.size(); i++) {
+            if (la.get(i).getMainAuthorID() == this.id) {
+                list.add(la.get(i));
+            }
+        }
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            return list;
+        }
+    }
+
+    /**
+     * set equals
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        Category u = (Category) obj;
+        return name.equals(u.getName());
+    }
+
+    /**
+     * display user
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += id + ". " + name + status + "\n";
+        return str;
+    }
+
+    /**
+     * compare username
+     *
+     * @param o
+     * @return
+     */
+    @Override
+    public int compareTo(Object o) {
+        Category u = (Category) o;
+        int result = this.name.compareToIgnoreCase(u.getName());
+        return result;
     }
 }

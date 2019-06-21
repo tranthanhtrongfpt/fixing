@@ -1,9 +1,7 @@
 package Class;
 
-
 /**
- * @author HAT team Group 3
- * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 import java.util.Date;
 import java.util.ArrayList;
@@ -13,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author tranthanhtrong
  */
-public class Comment {
+public class Comment implements Comparable {
 
     //Declare some variables
     private int ID;
@@ -211,5 +209,45 @@ public class Comment {
             }
         }
         return null;
+    }
+
+    /**
+     * set equals
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        Comment u = (Comment) obj;
+        return ID >= u.getID();
+    }
+
+    /**
+     * display user
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        String str = "";
+
+        str += ID + ". " + artID + ". " + content
+                + ". " + email + ". " + dateComment
+                + ". " + status + "\n";
+        return str;
+    }
+
+    /**
+     * compare username
+     *
+     * @param o
+     * @return
+     */
+    @Override
+    public int compareTo(Object o) {
+        Comment u = (Comment) o;
+        int result = this.email.compareToIgnoreCase(u.getEmail());
+        return result;
     }
 }

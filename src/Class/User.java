@@ -2,11 +2,11 @@ package Class;
 
 import java.util.ArrayList;
 import java.util.Objects;
+
 /**
- * @author HAT team Group 3
- * Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
+ * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
-public class User implements Comparable{
+public class User implements Comparable {
 
     //input data
     private int ID;
@@ -275,10 +275,10 @@ public class User implements Comparable{
         this.status = status;
     }
 
-    
     /**
      * disable
-     * @param id 
+     *
+     * @param id
      */
     public void disable(int id) {
         if (this.ID == id) {
@@ -288,25 +288,21 @@ public class User implements Comparable{
 
     /**
      * active function
-     * @param id 
+     *
+     * @param id
      */
     public void active(int id) {
         if (this.ID == id) {
             this.status = true;
         }
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        User u = (User) obj;
-        return name.equals(u.getUsername());
-    }
 
     /**
      * get article function
+     *
      * @param la
      * @param id
-     * @return 
+     * @return
      */
     public ArrayList<Article> getArticles(ArrayList<Article> la) {
         ArrayList<Article> list = new ArrayList<>();
@@ -321,18 +317,41 @@ public class User implements Comparable{
             return list;
         }
     }
-    
+
+    /**
+     * set equals
+     *
+     * @param obj
+     * @return
+     */
     @Override
-    public String toString(){
+    public boolean equals(Object obj) {
+        User u = (User) obj;
+        return name.equals(u.getUsername());
+    }
+
+    /**
+     * display user
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
         String str = "";
-        
-            str += ID + ". " + username + ". " + password
-                    + ". " + name + ". " + email + ". " + gender
-                    + ". " + birthday + ". " + phone
-                    + ". " + role_ID + ". " + status + "\n";
+
+        str += ID + ". " + username + ". " + password
+                + ". " + name + ". " + email + ". " + gender
+                + ". " + birthday + ". " + phone
+                + ". " + role_ID + ". " + status + "\n";
         return str;
     }
-    
+
+    /**
+     * compare username
+     *
+     * @param o
+     * @return
+     */
     @Override
     public int compareTo(Object o) {
         User u = (User) o;
