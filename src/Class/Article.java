@@ -17,7 +17,11 @@ public class Article implements Comparable {
     private String destext;
     private String title;
     private boolean status;
-
+    
+    public Article(){
+        
+    }
+    
     /**
      * Article stuff
      *
