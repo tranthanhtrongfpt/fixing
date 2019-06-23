@@ -26,24 +26,37 @@ public class TrongTestDB_Comment_Category {
      */
     public static void main(String[] args) {
         try {
-            //category
+            //==================== CATEGORY ====================================
+            //===== Showing
             CategoryModel cm = new CategoryModel();
             cm.load();
             ArrayList<Category> list = cm.getCates();
             for (int i = 0; i < list.size(); i++) {
-                System.out.println(list.get(i).toString());
+                //System.out.println("Here is list of category!");
+                //System.out.println(list.get(i).toString());
             }
-            // cm.add("New Cate", false);
-            // cm.update(1, "SUper han", true);
-            //comment
+            //===== Add
+            //cm.add("New1", false);
+            
+            //===== Update
+            //cm.update(4, "Category Updated", true);
+            
+            //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            
+            //==================== COMMENT =====================================
+            //===== Showing
             CommentModel comm = new CommentModel();
             comm.load();
             ArrayList<Comment> listComs = comm.getComs();
             for (int i = 0; i < listComs.size(); i++) {
-                System.out.println(listComs.get(i).toString());
+                //System.out.println("Here is list of comment!");
+                //System.out.println(listComs.get(i).toString());
             }
-            // comm.add(12, "Boring art", "thanhtrong@gam.com","1999-12-12", true);
-            //  comm.update(12, 12, "iidesune", "thanhtrong@gmail.con","1999-12-12", true);
+            //===== Add
+             //comm.add(12, "Boring art", "thanhtrong@gam.com","1999-12-12", true);
+            
+            //===== Update
+            //comm.update(12, 12, "updated comment success", "thanhtrong@gmail.con","1999-12-12", true);
         } catch (SQLException e) {
         }
     }
