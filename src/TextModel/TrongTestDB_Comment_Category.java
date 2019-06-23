@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class TrongTestDB {
+public class TrongTestDB_Comment_Category {
 
     /**
      * Main function
@@ -26,7 +26,6 @@ public class TrongTestDB {
      */
     public static void main(String[] args) {
         try {
-            
             //category
             CategoryModel cm = new CategoryModel();
             cm.load();

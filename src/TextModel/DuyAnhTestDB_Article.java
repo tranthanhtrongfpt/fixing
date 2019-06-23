@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class DuyAnhTestDB {
+public class DuyAnhTestDB_Article {
     /**
      * Main fucntion
      * @param args 
@@ -27,7 +27,7 @@ public class DuyAnhTestDB {
               System.out.println(list.get(i).toString());
             }
         } catch (SQLException ex) {
-           //Logger.getLogger(DuyAnhTestDB.class.getName()).log(Level.SEVERE, null, ex);
+           //Logger.getLogger(DuyAnhTestDB_Article.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

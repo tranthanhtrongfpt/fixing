@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class HungTestDB {
+public class HungTestDB_User_Role {
 
     //get connection
     private static Connection conn;
