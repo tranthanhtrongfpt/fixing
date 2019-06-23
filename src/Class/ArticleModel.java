@@ -54,16 +54,16 @@ public class ArticleModel {
      */
     public void Load() throws SQLException {
         try {
-            sqlStr = "SELECT * FROM " + tableName + "";
+            sqlStr = "\"SELECT * FROM `user` WHERE 1\"";
             rs = st.executeQuery(sqlStr);
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
                     int Id = rs.getInt("ID");
                     String content = rs.getString("Content");
-                    int Main_Author_ID = rs.getInt("Main Author ID");
-                    int Editor_ID = rs.getInt("Editor ID");
-                    Date Date_Pub = rs.getDate("Date Publish");
-                    int Cate_ID = rs.getInt("Cate ID");
+                    int Main_Author_ID = rs.getInt("Main_Author_ID");
+                    int Editor_ID = rs.getInt("Editor_ID");
+                    Date Date_Pub = rs.getDate("Date_Pub");
+                    int Cate_ID = rs.getInt("Cate_ID");
                     String Des_Pic = rs.getString("Des_Pic");
                     String Des_Text = rs.getString("Des_Text");
                     String Title = rs.getString("Title");
@@ -355,4 +355,12 @@ public class ArticleModel {
         return str;
     }
 
+    /**
+     * return list of object
+     *
+     * @return
+     */
+    public ArrayList<Article> getArticles() {
+        return articles;
+    }
 }
