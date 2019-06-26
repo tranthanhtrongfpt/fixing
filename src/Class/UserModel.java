@@ -110,6 +110,7 @@ public class UserModel {
             pst.setBoolean(9, status);
             pst.executeUpdate();
             int sz = users.size();
+            rs = pst.getGeneratedKeys();
             if (rs.next()) {
                 int id = rs.getInt(1);
                 users.add(new User(id, username, password, name, email, gender, birthday, phone, role_id, status));
