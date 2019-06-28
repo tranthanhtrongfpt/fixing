@@ -9,13 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /**
  * @author HAT team Group 3 Nguyen Dong Hung, Ho Duy Anh, Tran Thanh Trong
  */
 public class ArticleModel {
 
     //declare some variables
-    private String tableName = "Article";
+    private String tableName = "article";
     private Connection conn;
     private Statement st;
     private PreparedStatement pst;
@@ -39,7 +40,7 @@ public class ArticleModel {
             pst = null;
             rs = null;
             sqlStr = "";
-            articles = new ArrayList<Article>();
+            articles = new ArrayList<>();
         } catch (SQLException e) {
             throw e;
         } catch (Exception e) {
@@ -54,7 +55,7 @@ public class ArticleModel {
      */
     public void Load() throws SQLException {
         try {
-            sqlStr = "\"SELECT * FROM `user` WHERE 1\"";
+            sqlStr = "SELECT * FROM " + tableName + ";";
             rs = st.executeQuery(sqlStr);
             if (rs.isBeforeFirst()) {
                 while (rs.next()) {
@@ -62,10 +63,11 @@ public class ArticleModel {
                     String content = rs.getString("Content");
                     int Main_Author_ID = rs.getInt("Main_Author_ID");
                     int Editor_ID = rs.getInt("Editor_ID");
-                    Date Date_Pub = rs.getDate("Date_Pub");
+                    String Date_Pub = rs.getString("Date_Pub");
+                    
                     int Cate_ID = rs.getInt("Cate_ID");
                     String Des_Pic = rs.getString("Des_Pic");
-                    String Des_Text = rs.getString("Des_Text");
+                    String Des_Text = rs.getString("Des_text");
                     String Title = rs.getString("Title");
                     boolean status = rs.getBoolean("Status");
                     articles.add(new Article(Id, Main_Author_ID, Editor_ID, Cate_ID, content, Date_Pub, Des_Text, Des_Pic, Title, status));
@@ -94,7 +96,7 @@ public class ArticleModel {
      * @return
      * @throws java.sql.SQLException
      */
-    public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
+    public boolean add(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
             sqlStr = "INSERT INTO " + tableName + " VALUES (null,?,?,?,?,?,?,?,?,?);";
@@ -104,7 +106,7 @@ public class ArticleModel {
             pst.setString(2, content);
             pst.setInt(3, mainAuthorID);
             pst.setInt(4, editorID);
-            pst.setDate(5, (java.sql.Date) datePub);
+            pst.setString(5,  datePub);
             pst.setInt(6, cateID);
             pst.setString(7, desPic);
             pst.setString(8, destext);
@@ -142,7 +144,7 @@ public class ArticleModel {
      * @return
      * @throws java.sql.SQLException
      */
-    public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status)
+    public boolean update(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status)
             throws SQLException, Exception {
         try {
             sqlStr = " UPDATE " + tableName + " where `ID`=? VALUES (?,?,?,?,?,?,?,?,?);";
@@ -152,7 +154,7 @@ public class ArticleModel {
             pst.setString(2, content);
             pst.setInt(3, mainAuthorID);
             pst.setInt(4, editorID);
-            pst.setDate(5, (java.sql.Date) datePub);
+            pst.setString(5, datePub);
             pst.setInt(6, cateID);
             pst.setString(7, desPic);
             pst.setString(8, destext);
@@ -296,11 +298,11 @@ public class ArticleModel {
         }
         for (int i = 0; i < articles.size(); i++) {
             for (int j = 0; j < articles.size() - i; j++) {
-                if (articles.get(j).getDatePub().after(articles.get(j + 1).getDatePub())) {
-                    Article a = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, a);
-                }
+//                if (articles.get(j).getDatePub().after(articles.get(j + 1).getDatePub())) {
+//                    Article a = list.get(j);
+//                    list.set(j, list.get(j + 1));
+//                    list.set(j + 1, a);
+//                }
             }
         }
         if (list.isEmpty()) {

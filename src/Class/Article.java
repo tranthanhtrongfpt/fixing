@@ -11,7 +11,7 @@ public class Article implements Comparable {
     private String content;
     private int mainAuthorID;
     private int editorID;
-    private Date datePub;
+    private String datePub;
     private int cateID;
     private String desPic;
     private String destext;
@@ -36,7 +36,7 @@ public class Article implements Comparable {
      * @param title
      * @param status
      */
-    public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, Date datePub, String destext, String desPic, String title, boolean status) {
+    public Article(int iD, int mainAuthorID, int editorID, int cateID, String content, String datePub, String destext, String desPic, String title, boolean status) {
         this.ID = iD;
         this.mainAuthorID = mainAuthorID;
         this.content = content;
@@ -146,7 +146,7 @@ public class Article implements Comparable {
      *
      * @return
      */
-    public Date getDatePub() {
+    public String getDatePub() {
         return datePub;
     }
 
@@ -156,7 +156,7 @@ public class Article implements Comparable {
      * @param datePub
      * @throws ArticleException
      */
-    public void setDatePub(Date datePub) throws ArticleException {
+    public void setDatePub(String datePub) throws ArticleException {
         if (datePub.equals(null)) {
             throw new ArticleException("DatePub cannot empty");
         } else {

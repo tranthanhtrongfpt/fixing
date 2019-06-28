@@ -23,11 +23,12 @@ public class DuyAnhTestDB_Article {
             ArticleModel am = new ArticleModel();
             am.Load();
             ArrayList<Article> list = am.getsArticleList();
-            for (int i = 0; i < list.size(); i++) {
+           for (int i = 0; i < list.size(); i++) {
               System.out.println(list.get(i).toString());
             }
         } catch (SQLException ex) {
            //Logger.getLogger(DuyAnhTestDB_Article.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Duy Anh error");
         }
     }
 }
